@@ -1,0 +1,26 @@
+{
+  "original_core_revision": "4fdec46b205459b92e7d3b9e56df5d8e912d5c85",
+  "original_topp_revision": "582535805581f2bdf4f3871d6802a0b45a3abe36",
+  "transfers": [
+    {
+      "original": "packages/topp/src/ParquetDiff.cpp",
+      "destination": "src/ParquetDiff.cpp",
+      "sha256": "f87bdd5cc3d575a49fc435be06b512b371ec58edab9f31887ff27c36411951af"
+    },
+    {
+      "original": "packages/core/src/openms/include/OpenMS/FORMAT/ParquetTableComparator.h",
+      "destination": "include/OpenMS/FORMAT/ParquetTableComparator.h",
+      "sha256": "540d3076533ac19405aeb412704cf0f7380c13e124a32f71283d8886453f8bad"
+    },
+    {
+      "original": "packages/core/src/openms/source/FORMAT/ParquetTableComparator.cpp",
+      "destination": "source/FORMAT/ParquetTableComparator.cpp",
+      "sha256": "ebedb35159b836a724dfa4800ebf8f1b6df2ab028ee475554784b99a4314128d"
+    },
+    {
+      "original": "packages/core/src/tests/class_tests/openms/source/ParquetTableComparator_test.cpp",
+      "destination": "tests/source/ParquetTableComparator_test.cpp",
+      "sha256": "d8b35076cd17f34a0ac00a0516c692d12e5a1d8314463f7ad66bd33f5266d9ff"
+    }
+  ]
+}
