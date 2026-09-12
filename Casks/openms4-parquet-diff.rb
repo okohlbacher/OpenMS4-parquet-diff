@@ -1,9 +1,9 @@
 cask "openms4-parquet-diff" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.0-ci.1,771b7e6139d3"
-  sha256 arm:   "f207f0f56626b5b5c901783820d77eda799c6693a3c4b288a513697ea7392267",
-         intel: "a1e57d44e2e50ade5a1b99ff827150aa1a2557357f3cb8e881558fbed3d83c30"
+  version "1.0.0-ci.2,682f7086ebe9"
+  sha256 arm:   "f3962947c95dfe742e232f86b45392ae2058b9718bdbf57b29b98c756584c867",
+         intel: "8dfdb9020a40fa57c8eb1a6f5a3c213aef21923082da2f080cb0d7a28a94db24"
 
   url "https://github.com/okohlbacher/OpenMS4-parquet-diff/releases/download/" \
       "parquet-diff-v#{version.csv.first}/OpenMS4-parquet-diff-macos-#{arch}-Homebrew-#{version.csv.second}.tar.gz"
