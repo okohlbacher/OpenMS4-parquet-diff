@@ -37,5 +37,6 @@ jobs:
           brew tap okohlbacher/openms4-core https://github.com/okohlbacher/OpenMS4-core
           brew tap okohlbacher/openms4-parquet-diff https://github.com/okohlbacher/OpenMS4-parquet-diff
           brew install --cask okohlbacher/openms4-parquet-diff/openms4-parquet-diff
-          ParquetDiff --help
+          ParquetDiff -write_ini "$RUNNER_TEMP/ParquetDiff.ini"
+          test -s "$RUNNER_TEMP/ParquetDiff.ini"
           brew uninstall --cask openms4-parquet-diff
