@@ -14,6 +14,7 @@
 #include <OpenMS/SYSTEM/File.h>
 
 #include <arrow/api.h>
+#include <arrow/util/config.h>
 #include <arrow/io/file.h>
 #include <parquet/arrow/reader.h>
 
@@ -49,10 +50,19 @@ namespace OpenMS
       }
       auto reader = std::move(reader_result.ValueOrDie());
 
-      // The Result-returning overload is newer than the Arrow in contrib, so use the
-      // pointer-out form that ConsensusMapArrowIO uses. It is deprecated in recent Arrow,
-      // which is why -Wdeprecated-declarations fires here on newer system installs.
+      // Arrow deprecated the pointer-out form in 24.0.0 in favour of the Result-returning
+      // overload, which is newer than the Arrow in contrib, so both forms are kept.
       std::shared_ptr<arrow::Table> table;
+#if defined(ARROW_VERSION_MAJOR) && ARROW_VERSION_MAJOR >= 24
+      auto table_result = reader->ReadTable();
+      if (!table_result.ok())
+      {
+        OPENMS_LOG_ERROR << "ParquetTableComparator: cannot read table from '" << filename
+                         << "': " << table_result.status().ToString() << std::endl;
+        return nullptr;
+      }
+      table = table_result.MoveValueUnsafe();
+#else
       const auto read_status = reader->ReadTable(&table);
       if (!read_status.ok())
       {
@@ -60,6 +70,7 @@ namespace OpenMS
                          << "': " << read_status.ToString() << std::endl;
         return nullptr;
       }
+#endif
 
       // Deliberately NOT CombineChunks(): it documents that "binary columns may be combined
       // into multiple chunks" to avoid offset overflow, so a single chunk is not guaranteed
