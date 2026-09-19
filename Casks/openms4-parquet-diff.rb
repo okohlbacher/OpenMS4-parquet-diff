@@ -1,9 +1,9 @@
 cask "openms4-parquet-diff" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.0-ci.5,70bfad287412"
-  sha256 arm:   "375b114738ba1e6440054acec15e0d139597424a61259d68774093fbab153ed3",
-         intel: "ec6b1e257e18bca11c627952df0fae4bde319e9e8e75c3653782697dc65b5b81"
+  version "1.0.0-ci.6,6eff01573a1a"
+  sha256 arm:   "094edf046c50b2e0f5e1704c10dcc328fa4cfa89ed6e784d7c00b3de1519918e",
+         intel: "deb83050c55dbacbc072793710b1586ee21ed8d620481e36512c6a32b8555a83"
 
   url "https://github.com/okohlbacher/OpenMS4-parquet-diff/releases/download/" \
       "parquet-diff-v#{version.csv.first}/OpenMS4-parquet-diff-macos-#{arch}-Homebrew-#{version.csv.second}.tar.gz"
@@ -21,9 +21,9 @@ cask "openms4-parquet-diff" do
   preflight do
     config = "#{HOMEBREW_PREFIX}/opt/openms4-core/lib/cmake/OpenMS/OpenMSConfig.cmake"
     core = File.exist?(config) ? File.read(config)[/set\(OpenMS_SOURCE_REVISION "([0-9a-f]{40})"\)/, 1] : nil
-    next if core == "eb58e981d7e0864634b59230874a56a1512369f7"
+    next if core == "7d90cec8718d28518527acc10b495550f106de26"
 
-    raise Cask::CaskError, "openms4-parquet-diff #{version.csv.first} was built against openms4-core eb58e981d7e0, " \
+    raise Cask::CaskError, "openms4-parquet-diff #{version.csv.first} was built against openms4-core 7d90cec8718d, " \
                            "but the installed openms4-core is #{core&.slice(0, 12) || "unknown"}. " \
                            "Install the openms4-parquet-diff release built for the installed Core."
   end
